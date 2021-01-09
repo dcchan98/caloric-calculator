@@ -1,9 +1,10 @@
 /** @format */
+import Counter from "./components/CaloricCounter/Counter";
 
 export default function App(props) {
 	return (
 		<div>
-			<h1>Hello World</h1>
+			<Counter/>
 		</div>
 	);
 }
