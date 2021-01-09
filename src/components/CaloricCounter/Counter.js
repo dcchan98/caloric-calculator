@@ -21,15 +21,17 @@ export default class Counter extends Component {
 		this.handleCarbs = this.handleCarbs.bind(this);
 		this.handleFats = this.handleFats.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
-		this.handleDelete = this.handleDelete.bind(this);
+		
 
 		// This binding is necessary to makeIncrements` work in the callback
 	}
 
-	handleDelete(event) {
+	delete(foodToDelete) {
 		console.log("called");
-		console.log(event);
+		const foodList = this.state.listOfFood.filter((food) => food != foodToDelete);
+		this.setState({listOfFood:foodList});
 	}
+
 
 	handleName(event) {
 		this.setState({ name: event.target });
@@ -77,13 +79,12 @@ export default class Counter extends Component {
 				<div>
 					{this.state.listOfFood.map((food) => (
 						<FoodItem
-							foodObject={food}
 							key={uuidv4(food)}
 							foodName={food.name}
 							carbs={food.getC()}
 							fats={food.getF()}
 							protein={food.getP()}
-							handleDelete={this.handleDelete}
+							handleDelete={this.delete.bind(this,food)}
 						/>
 					))}
 				</div>
